@@ -36,7 +36,7 @@
                       name="cooks"
                       id="cooks"
                       class="block w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="Введите выручку"
+                      placeholder="Введите кол-во поваров в смене"
                     />
                   </div>
                 </div>
@@ -53,7 +53,24 @@
                       name="hours"
                       id="hours"
                       class="block w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="Введите выручку"
+                      placeholder="Введите отработанные часы"
+                    />
+                  </div>
+                </div>
+                <div class="col-span-3 sm:col-span-2">
+                  <label
+                    for="hours"
+                    class="block text-sm font-medium text-gray-700"
+                    >Роллы дня</label
+                  >
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <input
+                      v-model="rollOfDayCount"
+                      type="number"
+                      name="hours"
+                      id="hours"
+                      class="block w-full rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="Введите кол-во роллов дня"
                     />
                   </div>
                 </div>
@@ -77,10 +94,12 @@ const MIN_INCOME = 10000;
 const RATE_GROW_STEP = 2000;
 const RATE_STEP = 0.05;
 const HOUR_COST = 153.571;
+const ROLL_OF_DAY_PRICE = 10;
 
 const income = ref(0);
 const cooks = ref(5);
 const hours = ref(14);
+const rollOfDayCount = ref(0);
 
 const rate = computed(() => {
   if (!cooks.value) {
@@ -99,7 +118,11 @@ const rate = computed(() => {
   );
 });
 
-const salary = computed(() => HOUR_COST * hours.value * rate.value);
+const rollOfDayBonus = computed(() => ROLL_OF_DAY_PRICE * rollOfDayCount.value);
+
+const salary = computed(
+  () => HOUR_COST * hours.value * rate.value + rollOfDayBonus.value,
+);
 </script>
 
 <style lang="scss"></style>
