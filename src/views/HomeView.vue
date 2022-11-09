@@ -9,6 +9,7 @@
                 v-for="field in form"
                 :key="field.id"
                 v-model="field.value.value"
+                type="number"
                 :label="field.label"
               />
               <div>
@@ -31,6 +32,7 @@
                 v-for="field in settings"
                 :key="field.id"
                 v-model="field.value.value"
+                type="number"
                 :label="field.label"
               />
             </div>
