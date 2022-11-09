@@ -19,6 +19,24 @@
           </div>
         </div>
       </form>
+      <q-list bordered class="rounded-borders">
+        <q-expansion-item
+          expand-separator
+          icon="perm_identity"
+          label="Настройки"
+        >
+          <div class="tw-space-y-6 tw-bg-white tw-px-4 tw-py-5 sm:tw-p-6">
+            <div class="tw-flex tw-flex-col tw-gap-6">
+              <q-input
+                v-for="field in settings"
+                :key="field.id"
+                v-model="field.value.value"
+                :label="field.label"
+              />
+            </div>
+          </div>
+        </q-expansion-item>
+      </q-list>
     </div>
   </main>
 </template>
@@ -29,8 +47,24 @@ import { ref, computed } from 'vue';
 const MIN_INCOME = 10000;
 const RATE_GROW_STEP = 2000;
 const RATE_STEP = 0.05;
-const HOUR_COST = 153.571;
-const ROLL_OF_DAY_PRICE = 10;
+
+const hourCost = ref(153.571);
+const rollOfDayPrice = ref(10);
+
+const settings = [
+  {
+    id: 'hourCost',
+    type: 'number',
+    label: 'Стоимость часа',
+    value: hourCost,
+  },
+  {
+    id: 'rollOfDayPrice',
+    type: 'number',
+    label: 'Цена ролла дня',
+    value: rollOfDayPrice,
+  },
+];
 
 const income = ref(0);
 const cooks = ref(5);
@@ -43,7 +77,6 @@ const form = [
     type: 'number',
     label: 'Выручка',
     value: income,
-    placeholder: 'Введите выручку',
   },
   {
     id: 'cooks',
@@ -82,10 +115,12 @@ const rate = computed(() => {
   );
 });
 
-const rollOfDayBonus = computed(() => ROLL_OF_DAY_PRICE * rollOfDayCount.value);
+const rollOfDayBonus = computed(
+  () => rollOfDayPrice.value * rollOfDayCount.value,
+);
 
 const salary = computed(
-  () => HOUR_COST * hours.value * rate.value + rollOfDayBonus.value,
+  () => hourCost.value * hours.value * rate.value + rollOfDayBonus.value,
 );
 </script>
 
