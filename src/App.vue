@@ -2,16 +2,8 @@
   <RouterView></RouterView>
 </template>
 
-<script>
+<script setup lang="ts">
 import { RouterView } from 'vue-router';
-
-export default {
-  components: { RouterView },
-
-  data() {
-    return {};
-  },
-};
 </script>
 
 <style lang="scss"></style>
