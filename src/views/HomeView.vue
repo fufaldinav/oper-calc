@@ -50,7 +50,7 @@ const MIN_INCOME = 10000;
 const RATE_GROW_STEP = 2000;
 const RATE_STEP = 0.05;
 
-const hourCost = ref(153.571);
+const hourCost = ref(160.714286);
 const rollOfDayPrice = ref(10);
 
 const settings = [
