@@ -50,7 +50,7 @@ const MIN_INCOME = 10000;
 const RATE_GROW_STEP = 2000;
 const RATE_STEP = 0.05;
 
-const hourCost = ref(160.714286);
+const hourCost = ref(173.076923);
 const rollOfDayPrice = ref(10);
 
 const settings = [
@@ -70,7 +70,7 @@ const settings = [
 
 const income = ref(0);
 const cooks = ref(5);
-const hours = ref(14);
+const hours = ref(13);
 const rollOfDayCount = ref(0);
 
 const form = [
