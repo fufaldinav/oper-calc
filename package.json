@@ -1,5 +1,5 @@
 {
-  "name": "heroes-rh",
+  "name": "oper-calc",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
